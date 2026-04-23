@@ -48,7 +48,6 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Animated Background with Grid Pattern */
         .bg-gradient {
             position: fixed;
             top: 0;
@@ -76,7 +75,6 @@
             -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
         }
 
-        /* Navigation with Glass Effect */
         nav {
             position: fixed;
             top: 0;
@@ -106,10 +104,28 @@
             background-clip: text;
             text-decoration: none;
             transition: opacity 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .logo:hover {
             opacity: 0.8;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .mobile-menu-btn:hover {
+            color: var(--primary);
         }
 
         .nav-links {
@@ -146,13 +162,6 @@
             width: 100%;
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-        }
-
-        /* Hero Section with Modern Typography */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -176,10 +185,6 @@
             z-index: -1;
         }
 
-        .hero-content {
-            max-width: 800px;
-        }
-
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -193,10 +198,6 @@
             color: var(--primary);
             margin-bottom: 2rem;
             animation: fadeInUp 0.6s ease;
-        }
-
-        .hero-badge i {
-            font-size: 0.9rem;
         }
 
         .hero h1 {
@@ -231,14 +232,6 @@
             margin-right: auto;
             animation: fadeInUp 0.6s ease 0.4s both;
             line-height: 1.7;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.6s ease 0.6s both;
         }
 
         .btn {
@@ -292,7 +285,6 @@
             transform: translateY(-2px);
         }
 
-        /* Section Styles */
         section {
             padding: 8rem 2rem;
             max-width: 1200px;
@@ -319,7 +311,6 @@
             line-height: 1.7;
         }
 
-        /* Projects Grid with Glass Cards */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -415,7 +406,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .tech-tag {
@@ -446,7 +437,6 @@
             margin-top: 1rem;
         }
 
-        /* Process Section */
         .process-timeline {
             position: relative;
             max-width: 900px;
@@ -502,10 +492,6 @@
             font-size: 1.5rem;
         }
 
-        .process-content {
-            padding-top: 1rem;
-        }
-
         .process-content h3 {
             font-size: 1.35rem;
             margin-bottom: 0.75rem;
@@ -518,7 +504,6 @@
             line-height: 1.7;
         }
 
-        /* Pricing Notes */
         .pricing-notes {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
             border: 1px solid var(--border);
@@ -558,7 +543,6 @@
             margin-top: 0.125rem;
         }
 
-        /* Contact Section */
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -629,7 +613,6 @@
             text-underline-offset: 4px;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 4rem 2rem;
@@ -638,7 +621,6 @@
             background: linear-gradient(180deg, transparent, rgba(2, 6, 23, 0.5));
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -650,12 +632,57 @@
             }
         }
 
+        /* Mobile Responsive Styles */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
+            .mobile-menu-btn {
+                display: block;
             }
 
-            .projects-grid {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--bg-card);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--border);
+                transform: translateY(-150%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                z-index: 999;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                padding: 0.75rem 0;
+                display: block;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
+            .hero {
+                padding: 12rem 1.5rem 6rem;
+            }
+
+            section {
+                padding: 5rem 1.5rem;
+            }
+
+            .projects-grid,
+            .pricing-grid,
+            .portfolio-grid,
+            .services-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -688,6 +715,14 @@
             .pricing-notes {
                 padding: 1.5rem;
             }
+
+            .project-card {
+                padding: 2rem;
+            }
+
+            .contact-card {
+                padding: 2rem;
+            }
         }
     </style>
 </head>
@@ -696,7 +731,10 @@
 
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="logo"><i class="fas fa-power-off" style="color: #ef4444; margin-right: 0.5rem;"></i>Iconic Development</a>
+            <a href="index.html" class="logo"><i class="fas fa-power-off" style="color: #ef4444;"></i>Iconic Development</a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-links">
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="wordpress.html">WordPress</a></li>
@@ -725,7 +763,6 @@
         </div>
 
         <div class="projects-grid">
-            <!-- Project 1 -->
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-ticket-alt"></i></div>
                 <h3>Event Ticketing & Management System</h3>
@@ -747,7 +784,6 @@
                 <div class="project-price">KES 120,000 – 250,000</div>
             </div>
 
-            <!-- Project 2 -->
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-building"></i></div>
                 <h3>Property Management System</h3>
@@ -767,7 +803,6 @@
                 <div class="project-price">KES 100,000 – 220,000</div>
             </div>
 
-            <!-- Project 3 -->
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-satellite-dish"></i></div>
                 <h3>SMS Automation API Platform</h3>
@@ -786,7 +821,6 @@
                 <div class="project-price">KES 50,000 – 120,000</div>
             </div>
 
-            <!-- Project 4 -->
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-industry"></i></div>
                 <h3>Manufacturing CRM System</h3>
@@ -805,7 +839,6 @@
                 <div class="project-price">KES 150,000 – 300,000</div>
             </div>
 
-            <!-- Project 5 -->
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-wifi"></i></div>
                 <h3>WiFi Billing & MikroTik Integration</h3>
@@ -824,7 +857,6 @@
                 <div class="project-price">KES 180,000 – 350,000</div>
             </div>
 
-            <!-- Project 6 -->
             <div class="project-card">
                 <div class="project-icon"><i class="fas fa-graduation-cap"></i></div>
                 <h3>School SaaS Platform</h3>
@@ -845,7 +877,7 @@
         </div>
 
         <div class="pricing-notes">
-            <h3>💰 Pricing Notes</h3>
+            <h3><i class="fas fa-info-circle"></i> Pricing Notes</h3>
             <ul>
                 <li>Pricing depends on complexity, integrations, and timeline</li>
                 <li>MVPs can be built at lower cost for fast validation</li>
@@ -911,57 +943,6 @@
         </div>
     </section>
 
-    <section id="wordpress">
-        <div class="section-header">
-            <h2>WordPress & Website Development</h2>
-            <p>Professional websites built on WordPress and custom platforms</p>
-        </div>
-
-        <div class="projects-grid">
-            <div class="project-card">
-                <div class="project-icon"><i class="fab fa-wordpress"></i></div>
-                <h3>WordPress Development</h3>
-                <p>Custom WordPress websites with modern design, SEO optimization, and performance tuning.</p>
-                <ul class="project-features">
-                    <li>Custom theme development</li>
-                    <li>Plugin integration & customization</li>
-                    <li>WooCommerce e-commerce sites</li>
-                    <li>Speed optimization & SEO</li>
-                    <li>Security hardening</li>
-                </ul>
-                <div class="project-tech">
-                    <span class="tech-tag">WordPress</span>
-                    <span class="tech-tag">PHP</span>
-                    <span class="tech-tag">WooCommerce</span>
-                    <span class="tech-tag">Elementor</span>
-                </div>
-                <div class="project-price">KES 40,000 – 150,000</div>
-            </div>
-
-            <div class="project-card">
-                <div class="project-icon"><i class="fas fa-globe"></i></div>
-                <h3>Startinev - Corporate Website</h3>
-                <p>Professional business website with modern design and seamless user experience.</p>
-                <ul class="project-features">
-                    <li>Responsive design across all devices</li>
-                    <li>Fast loading performance</li>
-                    <li>SEO-optimized structure</li>
-                    <li>Contact & lead generation forms</li>
-                    <li>Social media integration</li>
-                </ul>
-                <div class="project-tech">
-                    <span class="tech-tag">WordPress</span>
-                    <span class="tech-tag">Custom CSS</span>
-                    <span class="tech-tag">JavaScript</span>
-                </div>
-                <div class="project-price">Live Project</div>
-                <div style="margin-top: 1rem; text-align: center;">
-                    <a href="https://startinev.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;"><i class="fas fa-external-link-alt"></i> Visit Site</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="contact">
         <div class="section-header">
             <h2>Let's Build Something Great</h2>
@@ -994,6 +975,33 @@
     </footer>
 
     <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
+            });
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileMenuBtn?.querySelector('i');
+                if (icon) {
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                }
+            });
+        });
+
         // Smooth scroll for nav links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
