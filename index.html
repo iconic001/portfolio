@@ -26,6 +26,18 @@
             --border-hover: #334155;
             --success: #10b981;
             --glass: rgba(15, 23, 42, 0.7);
+            --whatsapp: #25D366;
+        }
+
+        [data-theme="light"] {
+            --bg: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f1f5f9;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --glass: rgba(255, 255, 255, 0.8);
         }
 
         * {
@@ -75,6 +87,145 @@
             -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
         }
 
+        /* Reading Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--purple), var(--accent));
+            z-index: 1001;
+            transition: width 0.1s;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .theme-toggle i {
+            font-size: 1.1rem;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--whatsapp), #128C7E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+            z-index: 999;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6); }
+        }
+
+        /* Tech Stack Marquee */
+        .tech-marquee {
+            position: relative;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 0;
+            overflow: hidden;
+            margin: 4rem 0;
+        }
+
+        .tech-marquee::before,
+        .tech-marquee::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .tech-marquee::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--bg), transparent);
+        }
+
+        .tech-marquee::after {
+            right: 0;
+            background: linear-gradient(-90deg, var(--bg), transparent);
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 4rem;
+            animation: marquee 30s linear infinite;
+        }
+
+        .tech-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 100px;
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .tech-item:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+
+        .tech-item i {
+            font-size: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .tech-item span {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         nav {
             position: fixed;
             top: 0;
@@ -93,6 +244,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
 
         .logo {
@@ -723,18 +875,45 @@
             .contact-card {
                 padding: 2rem;
             }
+
+            .whatsapp-float {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .theme-toggle span {
+                display: none;
+            }
+
+            .tech-marquee {
+                margin: 3rem 0;
+            }
+
+            .tech-item i {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="bg-gradient"></div>
+    <div class="progress-bar" id="progressBar"></div>
 
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo"><i class="fas fa-power-off" style="color: #ef4444;"></i>Iconic Development</a>
-            <button class="mobile-menu-btn" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="fas fa-sun"></i>
+                    <span>Theme</span>
+                </button>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
             <ul class="nav-links">
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="wordpress.html">WordPress</a></li>
@@ -755,6 +934,93 @@
             </div>
         </div>
     </section>
+
+    <!-- Tech Stack Marquee -->
+    <div class="tech-marquee">
+        <div class="marquee-content">
+            <div class="tech-item">
+                <i class="fab fa-laravel"></i>
+                <span>Laravel</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-react"></i>
+                <span>React</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-node-js"></i>
+                <span>Node.js</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-php"></i>
+                <span>PHP</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-database"></i>
+                <span>PostgreSQL</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-server"></i>
+                <span>MySQL</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-wordpress"></i>
+                <span>WordPress</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-docker"></i>
+                <span>Docker</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-cloud"></i>
+                <span>AWS</span>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="tech-item">
+                <i class="fab fa-laravel"></i>
+                <span>Laravel</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-react"></i>
+                <span>React</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-node-js"></i>
+                <span>Node.js</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-php"></i>
+                <span>PHP</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-python"></i>
+                <span>Python</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-database"></i>
+                <span>PostgreSQL</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-server"></i>
+                <span>MySQL</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-wordpress"></i>
+                <span>WordPress</span>
+            </div>
+            <div class="tech-item">
+                <i class="fab fa-docker"></i>
+                <span>Docker</span>
+            </div>
+            <div class="tech-item">
+                <i class="fas fa-cloud"></i>
+                <span>AWS</span>
+            </div>
+        </div>
+    </div>
 
     <section id="projects">
         <div class="section-header">
@@ -974,7 +1240,44 @@
         <p>© 2026 Iconic Development. Built with precision and purpose.</p>
     </footer>
 
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/254759007522" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle?.querySelector('i');
+        
+        // Check for saved theme preference or default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        updateThemeIcon(currentTheme);
+
+        themeToggle?.addEventListener('click', () => {
+            const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            if (themeIcon) {
+                themeIcon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            }
+        }
+
+        // Reading Progress Bar
+        const progressBar = document.getElementById('progressBar');
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.pageYOffset;
+            const progress = (scrolled / documentHeight) * 100;
+            progressBar.style.width = `${progress}%`;
+        });
+
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const navLinks = document.querySelector('.nav-links');
