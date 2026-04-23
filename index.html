@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -100,6 +101,12 @@
             color: var(--primary);
         }
 
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -115,7 +122,9 @@
         }
 
         .hero-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 0.5rem 1rem;
             background: rgba(37, 99, 235, 0.1);
             border: 1px solid var(--primary);
@@ -124,6 +133,10 @@
             color: var(--primary);
             margin-bottom: 1.5rem;
             animation: fadeInUp 0.6s ease;
+        }
+
+        .hero-badge i {
+            font-size: 0.9rem;
         }
 
         .hero h1 {
@@ -254,6 +267,10 @@
         .project-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .project-card h3 {
@@ -344,11 +361,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 1.5rem;
             color: var(--primary);
             flex-shrink: 0;
             z-index: 1;
+        }
+
+        .process-number i {
+            font-size: 1.5rem;
         }
 
         .process-content {
@@ -421,6 +441,10 @@
         .contact-icon {
             font-size: 2rem;
             margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .contact-card h3 {
@@ -498,6 +522,7 @@
             <div class="logo">Moses Irungu</div>
             <ul class="nav-links">
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#wordpress">WordPress</a></li>
                 <li><a href="#process">Process</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -506,7 +531,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <span class="hero-badge">🚀 Web Developer & Systems Architect</span>
+            <span class="hero-badge"><i class="fas fa-rocket"></i> Web Developer & Systems Architect</span>
             <h1>I Build <span>Scalable Web Applications</span> That Drive Business Growth</h1>
             <p>I design and build real-world web applications focused on automation, efficiency, and growth. From SaaS platforms to SMS systems, event platforms to CRM tools.</p>
             <div class="hero-cta">
@@ -525,7 +550,7 @@
         <div class="projects-grid">
             <!-- Project 1 -->
             <div class="project-card">
-                <div class="project-icon">🎟</div>
+                <div class="project-icon"><i class="fas fa-ticket-alt"></i></div>
                 <h3>Event Ticketing & Management System</h3>
                 <p>Full-featured event platform for managing corporate events, hackathons, and business meetups.</p>
                 <ul class="project-features">
@@ -547,7 +572,7 @@
 
             <!-- Project 2 -->
             <div class="project-card">
-                <div class="project-icon">🏢</div>
+                <div class="project-icon"><i class="fas fa-building"></i></div>
                 <h3>Property Management System</h3>
                 <p>Automated rental property management for landlords and property managers.</p>
                 <ul class="project-features">
@@ -567,7 +592,7 @@
 
             <!-- Project 3 -->
             <div class="project-card">
-                <div class="project-icon">📡</div>
+                <div class="project-icon"><i class="fas fa-satellite-dish"></i></div>
                 <h3>SMS Automation API Platform</h3>
                 <p>Centralized API service for all SMS communication across multiple systems.</p>
                 <ul class="project-features">
@@ -586,7 +611,7 @@
 
             <!-- Project 4 -->
             <div class="project-card">
-                <div class="project-icon">🏭</div>
+                <div class="project-icon"><i class="fas fa-industry"></i></div>
                 <h3>Manufacturing CRM System</h3>
                 <p>Custom CRM tailored for manufacturing workflows and production pipelines.</p>
                 <ul class="project-features">
@@ -605,7 +630,7 @@
 
             <!-- Project 5 -->
             <div class="project-card">
-                <div class="project-icon">📶</div>
+                <div class="project-icon"><i class="fas fa-wifi"></i></div>
                 <h3>WiFi Billing & MikroTik Integration</h3>
                 <p>ISP-style billing platform for residential internet management.</p>
                 <ul class="project-features">
@@ -624,7 +649,7 @@
 
             <!-- Project 6 -->
             <div class="project-card">
-                <div class="project-icon">🎓</div>
+                <div class="project-icon"><i class="fas fa-graduation-cap"></i></div>
                 <h3>School SaaS Platform</h3>
                 <p>Comprehensive system for managing school operations, academics, and finances.</p>
                 <ul class="project-features">
@@ -660,50 +685,101 @@
 
         <div class="process-timeline">
             <div class="process-step">
-                <div class="process-number">1</div>
+                <div class="process-number"><i class="fas fa-lightbulb"></i></div>
                 <div class="process-content">
-                    <h3>🧠 Discovery & Planning</h3>
+                    <h3>Discovery & Planning</h3>
                     <p>Understand your business needs, define system requirements, create feature roadmap</p>
                 </div>
             </div>
 
             <div class="process-step">
-                <div class="process-number">2</div>
+                <div class="process-number"><i class="fas fa-palette"></i></div>
                 <div class="process-content">
-                    <h3>🎨 UI/UX Design</h3>
+                    <h3>UI/UX Design</h3>
                     <p>Wireframes or quick prototypes, focus on usability and simplicity, align design with your brand</p>
                 </div>
             </div>
 
             <div class="process-step">
-                <div class="process-number">3</div>
+                <div class="process-number"><i class="fas fa-code"></i></div>
                 <div class="process-content">
-                    <h3>🛠 Development</h3>
+                    <h3>Development</h3>
                     <p>Backend + frontend implementation, API integrations (payments, SMS, etc.), secure and scalable architecture</p>
                 </div>
             </div>
 
             <div class="process-step">
-                <div class="process-number">4</div>
+                <div class="process-number"><i class="fas fa-vial"></i></div>
                 <div class="process-content">
-                    <h3>🧪 Testing</h3>
+                    <h3>Testing</h3>
                     <p>Bug fixing and performance testing, real-world scenario validation</p>
                 </div>
             </div>
 
             <div class="process-step">
-                <div class="process-number">5</div>
+                <div class="process-number"><i class="fas fa-rocket"></i></div>
                 <div class="process-content">
-                    <h3>🚀 Deployment</h3>
+                    <h3>Deployment</h3>
                     <p>Hosting setup (cPanel, CyberPanel, Docker, etc.), domain configuration, live system rollout</p>
                 </div>
             </div>
 
             <div class="process-step">
-                <div class="process-number">6</div>
+                <div class="process-number"><i class="fas fa-tools"></i></div>
                 <div class="process-content">
-                    <h3>🔧 Maintenance & Support</h3>
+                    <h3>Maintenance & Support</h3>
                     <p>Updates and improvements, feature additions, system monitoring</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wordpress">
+        <div class="section-header">
+            <h2>WordPress & Website Development</h2>
+            <p>Professional websites built on WordPress and custom platforms</p>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-icon"><i class="fab fa-wordpress"></i></div>
+                <h3>WordPress Development</h3>
+                <p>Custom WordPress websites with modern design, SEO optimization, and performance tuning.</p>
+                <ul class="project-features">
+                    <li>Custom theme development</li>
+                    <li>Plugin integration & customization</li>
+                    <li>WooCommerce e-commerce sites</li>
+                    <li>Speed optimization & SEO</li>
+                    <li>Security hardening</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">WordPress</span>
+                    <span class="tech-tag">PHP</span>
+                    <span class="tech-tag">WooCommerce</span>
+                    <span class="tech-tag">Elementor</span>
+                </div>
+                <div class="project-price">KES 40,000 – 150,000</div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-globe"></i></div>
+                <h3>Startinev - Corporate Website</h3>
+                <p>Professional business website with modern design and seamless user experience.</p>
+                <ul class="project-features">
+                    <li>Responsive design across all devices</li>
+                    <li>Fast loading performance</li>
+                    <li>SEO-optimized structure</li>
+                    <li>Contact & lead generation forms</li>
+                    <li>Social media integration</li>
+                </ul>
+                <div class="project-tech">
+                    <span class="tech-tag">WordPress</span>
+                    <span class="tech-tag">Custom CSS</span>
+                    <span class="tech-tag">JavaScript</span>
+                </div>
+                <div class="project-price">Live Project</div>
+                <div style="margin-top: 1rem; text-align: center;">
+                    <a href="https://startinev.com/" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.9rem;"><i class="fas fa-external-link-alt"></i> Visit Site</a>
                 </div>
             </div>
         </div>
@@ -717,19 +793,19 @@
 
         <div class="contact-grid">
             <div class="contact-card">
-                <div class="contact-icon">📞</div>
+                <div class="contact-icon"><i class="fas fa-phone"></i></div>
                 <h3>Phone</h3>
                 <a href="tel:+254700026758">0700 026 758</a>
             </div>
 
             <div class="contact-card">
-                <div class="contact-icon">📧</div>
+                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                 <h3>Email</h3>
                 <a href="mailto:mosesrng@gmail.com">mosesrng@gmail.com</a>
             </div>
 
             <div class="contact-card">
-                <div class="contact-icon">📍</div>
+                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                 <h3>Location</h3>
                 <p>Kenya</p>
             </div>
